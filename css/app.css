@@ -12,9 +12,8 @@ body .gallery li {
   overflow: hidden;
   border: 1px solid #ebebeb;
   float: left;
-  padding: 10px;
   margin: 10px;
-  height: 240px;
+  height: 260px;
   list-style-type: none; }
   body .gallery li img {
     width: 150px;
@@ -30,7 +29,8 @@ body .categoryTitle {
   font-size: 18px; }
 body .participantImage {
   float: right;
-  margin: 10px; }
+  margin: 10px;
+  max-width: 200px;}
 body:after {
   clear: both; }
 body .activityTable {

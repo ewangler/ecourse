@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `beobachtung` (
   `participantId` int(11) NOT NULL,
   `leaderId` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
-  `activityId` int(11) DEFAULT NULL,
-  `datetime` datetime DEFAULT NULL,
+  `activityId` int(11),
+  `datetime` datetime,
   `beobachtung` longtext COLLATE utf8_bin NOT NULL,
   `Credat` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

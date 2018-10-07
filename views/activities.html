@@ -10,8 +10,8 @@
     </thead>
     <tr ng-repeat="activity in activities">
         <td>{{activity.activityNumber}} </td>
-        <td>{{activity.title}} </td>      
-        <td>{{activity.datetime}} </td>      
+        <td>{{activity.title}}</td>      
+        <td>{{activity.datetime | date:'dd/MM/yyyy'}}</td>      
         <td><a ng-if="activity.AnzBeobachtungen == 0" ng-click="deleteActivity(activity.activityId)">{{'ACTIVITY_DELETE' | translate}}</a>
     </tr>
 </table>
@@ -21,7 +21,10 @@
         <div class="control-group">
             <label class="control-label" for="inputtime">{{'ACTIVITY_DATETIME' | translate}}</label>
             <div class="controls">
-                <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeDD"/>.<input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMon"/>.<input id="inputDateTime"  type="text" size="4" ng-model="activity.datetimeYYYY"/> <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeHH"/>:<input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMin"/>
+                <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeDD"/>.
+                <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMon"/>.
+                <input id="inputDateTime"  type="text" size="4" ng-model="activity.datetimeYYYY"/> 
+                <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeHH"/>:<input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMin"/>
             </div>
         </div>
          <div class="control-group">

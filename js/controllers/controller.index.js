@@ -4,12 +4,12 @@ app.controller('IndexController', function($http, $scope) {
         .success(
             function(data, status, headers, config) {
                 $scope.categories = data[0].categories;
-                console.log($scope.categories);
+                // console.log($scope.categories);
                 
                 $scope.participants = data;
                 angular.forEach($scope.participants, function (participant) {
                     participant.numBeobachtungen = parseFloat(participant.numBeobachtungen);
-                    console.log(participant);
+                    // console.log(participant);
                 });
             })
         .error(

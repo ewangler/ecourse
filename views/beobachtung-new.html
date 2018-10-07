@@ -1,7 +1,6 @@
 <div class="container">
-    <h1>{{"NOTICE_ADD" |translate}}</h1>
+    <h1>{{"NOTICE_ADD" |translate}} {{participant.scoutname}}</h1>
 
-   
     <form novalidate="novalidate" class="form-horizontal" ng-submit="addBeobachtung()">
         <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_DATE'| translate}}</label>
@@ -37,9 +36,9 @@
         <div class="control-group">
             <label class="control-label" for="inputBeobachtung">{{'NOTICE_NOTICE'| translate}}</label>
             <div class="controls">
-                <textarea id="inputBeobachtung" ng-model="beobachtung.beobachtung" cols="100" rows="10"></textarea>
+                <textarea id="inputBeobachtung" class="form-control" ng-model="beobachtung.beobachtung" rows="10"></textarea>
             </div>
-        </div>
+        </div><br />
         <div class="control-group">
             <div class="controls">
                 <button type="submit" class="btn btn-primary">{{'NOTICE_ADD'| translate}}</button>

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION["leaderID"])) {
+    header("location: login.php");
+  }
+
 require 'vendor/autoload.php';
 include('dbConnection.php');
 
@@ -88,6 +92,7 @@ function getParticipants(){
             echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 }
+
 function getCategories(){
        	$sql = "SELECT "
                 . " *  "
@@ -115,7 +120,7 @@ function getDays(){
         $sql = "SELECT DISTINCT "
                 . " DATE(datetime) as dateShort "
                 . " FROM activity activity"
-                . " ORDER BY datetime ";
+                . " ORDER BY DATE(datetime) ";
 
 	try {
 		$db = getConnection();
@@ -232,14 +237,14 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
 }
 
 function getBeobachtung($id){
-    
-        
+
+
         	$sql = "SELECT "
                 . " beobachtungId, participantId, leaderId, categoryId, activity.activityId, activity.datetime, DATE(activity.datetime) as activityDateTime, DATE(beobachtung.datetime) as beobachtungDate, beobachtung, Credat "
                 . " FROM beobachtung "
                 . " LEFT OUTER JOIN activity on beobachtung.activityId = activity.activityId"
                 . " WHERE beobachtungId = ". intval($id);
-                
+
    //try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
@@ -250,7 +255,7 @@ function getBeobachtung($id){
 		echo json_encode($beobachtungen);
 	//} catch(PDOException $e) {
 	//	echo '{"error":{"text":'. $e->getMessage() .'}}';
-	//}            
+	//}
 
 }
 
@@ -272,7 +277,7 @@ function addBeobachtung(){
         $s->bindParam("leaderId",  $leaderId);
         $s->bindParam("categoryId",  $beobachtung->categoryId);
         $s->bindParam("activityId",  $beobachtung->activityId);
-        $datetime = '';
+        $datetime = null;
         if(isset($beobachtung->time)){
             $datetime = $beobachtung->date ." ". $beobachtung->time .":00";
         }
@@ -300,7 +305,7 @@ function updateBeobachtung(){
         $s = $db->prepare($sql);
         $s->bindParam("categoryId",  $beobachtung->categoryId);
         $s->bindParam("activityId",  $beobachtung->activityId);
-        $datetime = '';
+        $datetime = null;
         if(isset($beobachtung->time)){
             $datetime = $beobachtung->date ." ". $beobachtung->time .":00";
         }
@@ -370,7 +375,7 @@ function deleteActivity($id){
 
 function getParticipant($id) {
 	$sql = "SELECT "
-                . " participant.participantId, participant.prename, participant.name, participant.scoutname, participant.image,  participant.sex, participant.birthDate, participant.scoutGroup, participant.canton, participant.experience, participant.actualFunction, participant.futurePlans, participant.motivation, participant.recommendation"
+                . " participant.participantId, participant.prename, participant.name, participant.scoutname, participant.image,  participant.sex, participant.birthDate, participant.scoutGroup, participant.canton, participant.experience, participant.actualFunction, participant.futurePlans, participant.motivation, participant.recommendation, participant.comment"
                 . " FROM participant participant"
                 . " WHERE participant.participantId=:id";
 

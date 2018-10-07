@@ -42,7 +42,7 @@ function getCurrentBeobachtung($http, $scope, beobachtungId){
     $http.get('api/index.php/beobachtung/'+beobachtungId)
     .success(
         function(data, status, headers, config) {
-            console.log(data);   
+            // console.log(data);   
             $scope.beobachtung = data[0];
             
             
@@ -95,6 +95,20 @@ function watchActivityIdChange($scope){
 function initFormValues($scope, $http){
     getCategories($http, $scope);
     getDays($http, $scope);
+    var participantId = $routeParams.id;
+
+    $http.get('api/index.php/participant/view/'+ participantId)
+    .success(
+        function(data, status, headers, config) {
+
+            $scope.participant = data;
+        })
+    .error(
+        function(data, status, headers, config) {
+
+            $scope.participant = status;
+        });
+    
     
     $scope.timeDisabled = true;
     watchDateChange($scope, $http);
@@ -106,9 +120,9 @@ function validateBeobachtung($scope){
         if(!$scope.beobachtung){
             alert('Wie w&auml;re es, wenn du noch etwas in die Felder eingeben w&uuml;rdest? ;-)')
         } else if((!$scope.beobachtung.activityId || $scope.beobachtung.activityId == 0) && !$scope.beobachtung.time){
-            alert('Entweder muss eine Aktivit&auml;t ausgew&auml;hlt oder eine Zeit eingegeben werden.')
+            alert('Entweder muss eine Aktivität ausgewählt oder eine Zeit eingegeben werden.')
         } else if($scope.beobachtung.activityId > 0 && $scope.beobachtung.time){
-            alert('Es soll entweder eine Aktivit&auml;t oder ein Zeitpunkt ausgew&auml;hlt werden.')
+            alert('Es soll entweder eine Aktivität oder ein Zeitpunkt ausgewählt werden.')
         } else if($scope.beobachtung.time && !formatTime($scope.beobachtung.time)){
             alert('Die Zeit muss in der Form HH:MM eingegeben werden!');
         }else if(!$scope.beobachtung.categoryId){

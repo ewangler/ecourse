@@ -4,14 +4,14 @@
   <th>{{'PARTICIPANT_IMAGE' | translate}}</th>
   <th>{{'PARTICIPANT_SCOUTNAME'| translate}}</th>
         <th ng-repeat="category in categories">
-          {{category.name}}
+          <i class="fa fa-{{category.cssClass}}"></i> {{category.name}}
       </th>
   <th>{{'NUM_TOTAL' | translate}} </th>
 </tr>
 <tr ng-repeat="participant in participants | orderBy:'-numBeobachtungen'">
   <td>
       <a ng-href="#/participants/view/{{participant.participantId}}">
-      <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" alt="{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}" width="100"/>
+      <img ng-src="/images/{{participant.image}}" ng-if="participant.image" alt="{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}" width="100"/>
       </a>
     </td>
     <td> {{participant.scoutname}} </td >

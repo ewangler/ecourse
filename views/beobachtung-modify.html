@@ -1,7 +1,7 @@
 <div class="container">
     <h1>{{"NOTICE_MODIFY" |translate}}</h1>
 
-   
+
     <form novalidate="novalidate" class="form-horizontal" ng-submit="modifyBeobachtung()">
         <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_DATE'| translate}}</label>
@@ -11,16 +11,16 @@
                  </select>
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_ACTIVITY'| translate}}</label>
             <div class="controls">
                 <select id="inputActivity" ng-disabled="!dayActivities" ng-model="beobachtung.activityId" ng-options="i.activityId as (i.activityNumber + '-' + i.title) for i in dayActivities">>
                     <option value="0"> </option>
-                </select>        
+                </select>
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="inputtime">{{'NOTICE_TIME'| translate}}</label>
             <div class="controls">
@@ -37,16 +37,16 @@
         <div class="control-group">
             <label class="control-label" for="inputBeobachtung">{{'NOTICE_NOTICE'| translate}}</label>
             <div class="controls">
-                <textarea id="inputBeobachtung" ng-model="beobachtung.beobachtung" cols="100" rows="10"></textarea>
+                <textarea id="inputBeobachtung" ng-model="beobachtung.beobachtung" class="form-control" rows="10"></textarea>
             </div>
-        </div>
+        </div><br />
         <div class="control-group">
             <div class="controls">
                 <button type="submit" class="btn btn-warning">{{'NOTICE_MODIFY'| translate}}</button>
                 <button class="btn btn-danger" ng-click="deleteBeobachtung()">{{'NOTICE_DELETE' | translate}}</button>
                 <button class="btn btn-primary" ng-click="backToParticipant()">{{'NOTICE_NOT_SAVE' | translate}}</button>
-                
+
             </div>
         </div>
     </form>
-</div>  
+</div>
